@@ -6,7 +6,7 @@ name                    perforce
 version                 2013.2
 categories              devel
 platforms               darwin
-maintainers             gmail.com:rambiusparkisanius
+maintainers             googlemail.com:gjasny openmaintainer
 
 description             Fast source code management system
 
