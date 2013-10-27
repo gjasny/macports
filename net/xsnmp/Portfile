@@ -1,0 +1,35 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+PortGroup           github 1.0
+
+github.setup        gjasny Xsnmp 1.2.0 v
+name                xsnmp
+categories          net sysutils
+license             Apache-2
+platforms           darwin
+maintainers         googlemail.com:gjasny openmaintainer
+
+description         SNMP agent extension to query Mac OS and Apple values
+
+long_description    Xsnmp is an NetSNMP agent extension to query file system \
+                    information, RAID status and Xsan status remotely via SNMP.
+
+depends_lib         port:pcre \
+                    lib:libnetsnmp:net-snmp \
+                    lib:libnetsnmpagent:net-snmp
+
+checksums           rmd160 dca367e9b082322a670cb706075c06cec5251ff3 \
+                    sha256 de68ca105ea4b848a4c1dc1f9bd0ac0f26eb17b6ff2a851e2d52812958ca2055
+
+use_autoreconf  yes
+autoreconf.args -fvi
+
+startupitem.create  yes
+startupitem.executable  ${prefix}/sbin/xsnmp -f
+
+post-destroot {
+    xinstall -d -m 755 ${destroot}${prefix}/share/snmp/mibs
+    xinstall -W ${worksrcpath} -m 644 mib/XSNMP-MIB.txt ${destroot}${prefix}/share/snmp/mibs/
+}
