@@ -25,7 +25,7 @@ use_configure       no
 
 depends_build       port:rb19-ronn
 depends_lib         port:git-core
-depends_run         port:mr
+depends_run         port:myrepos
 
 post-patch {
     reinplace -E "s|ronn <|ronn-1.9 <|" ${worksrcpath}/Makefile
